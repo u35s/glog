@@ -1,0 +1,5 @@
+// modified from glog, see https://github.com/golang/glog for more details
+
+* 文件拆分查看结构
+* 添加Inf Dbg Err 等常用简写函数
+* 修改glog部分内容方便使用
