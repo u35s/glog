@@ -17,17 +17,19 @@ type severity int32 // sync/atomic int32
 // lower-severity log file.
 const (
 	infoLog severity = iota
+	dumpLog
 	debugLog
 	warningLog
 	errorLog
 	fatalLog
-	numSeverity = 5
+	numSeverity
 )
 
 const severityChar = "IDWEF"
 
 var severityName = []string{
 	infoLog:    "INF",
+	dumpLog:    "SYS",
 	debugLog:   "DBG",
 	warningLog: "WRN",
 	errorLog:   "ERR",

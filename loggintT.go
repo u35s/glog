@@ -217,6 +217,8 @@ func (l *loggingT) output(s severity, buf *buffer, file string, line int, alsoTo
 			fallthrough
 		case debugLog:
 			l.file[debugLog].Write(data)
+		case dumpLog:
+			l.file[dumpLog].Write(data)
 		case infoLog:
 			l.file[infoLog].Write(data)
 		}

@@ -1,5 +1,7 @@
 package glog
 
+import "io"
+
 func Inf(format string, args ...interface{}) {
 	logging.printf(infoLog, format, args...)
 }
@@ -18,4 +20,15 @@ func Err(format string, args ...interface{}) {
 
 func Ftl(format string, args ...interface{}) {
 	logging.printf(fatalLog, format, args...)
+}
+
+type dump struct{}
+
+func (this *dump) Write(p []byte) (n int, err error) {
+	logging.printf(dumpLog, " %v", string(p))
+	return 0, nil
+}
+
+func Dump() io.Writer {
+	return new(dump)
 }
