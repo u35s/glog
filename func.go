@@ -1,6 +1,10 @@
 package glog
 
-import "io"
+import (
+	"io"
+	"os"
+	"syscall"
+)
 
 func Inf(format string, args ...interface{}) {
 	logging.printf(infoLog, format, args...)
@@ -30,5 +34,11 @@ func (this *dump) Write(p []byte) (n int, err error) {
 }
 
 func Dump() io.Writer {
+	RedirectStderr()
 	return new(dump)
+}
+
+func RedirectStderr() {
+	errFile, _ := os.OpenFile(logDir+"/err."+program, os.O_WRONLY|os.O_APPEND|os.O_CREATE|os.O_SYNC, 0644)
+	syscall.Dup2(int(errFile.Fd()), 2)
 }
